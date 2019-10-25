@@ -14,5 +14,11 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
 });
+
+Route::post('createUser', 'UserCredentialController@saveAdmin');
+Route::post('login', 'UserCredentialController@login');
+Route::post('changePass', 'UserCredentialController@changePassword');
+Route::get('getAllUserId', 'UserCredentialController@getAllUserId');
+Route::post('adminResetPass', 'UserCredentialController@adminResetPassword');

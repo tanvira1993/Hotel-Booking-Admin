@@ -27,7 +27,59 @@ hotelAdminApp.config(['$stateProvider', '$urlRouterProvider', function($statePro
     	}
     })
 
-    
+    .state('register', {
+        url: "/register",
+        templateUrl: "/register",
+        data: {pageTitle: 'Register'},
+        controller: "RegisterController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'hotelAdminApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-asset/RegisterController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('resetPassword', {
+        url: "/resetPassword",
+        templateUrl: "/resetPassword",
+        data: {pageTitle: 'Reset Password'},
+        controller: "ResetPasswordController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'hotelAdminApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-asset/ResetPasswordController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('adminResetPassword', {
+        url: "/adminResetPassword",
+        templateUrl: "/adminResetPassword",
+        data: {pageTitle: 'Admin Reset Password'},
+        controller: "AdminResetPasswordController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'hotelAdminApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-asset/AdminResetPasswordController.js'
+                    ]
+                });
+            }]
+        }
+    }) 
 
 
 }]);

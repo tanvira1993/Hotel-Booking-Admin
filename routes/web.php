@@ -17,3 +17,20 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
 	return view('dashboard');
 });
+
+Route::get('/register', function () {
+	return view('credential/register');
+});
+
+Route::get('/adminResetPassword', function () {
+	return view('credential/adminResetPassword');
+});
+
+Route::get('/resetPassword', function () {
+	return view('credential/resetPassword');
+});
+
+Route::get('login/logout', function () {
+	return (String)view('credential/logout_view');
+});
+
