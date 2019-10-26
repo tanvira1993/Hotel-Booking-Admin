@@ -79,7 +79,61 @@ hotelAdminApp.config(['$stateProvider', '$urlRouterProvider', function($statePro
                 });
             }]
         }
+    })
+
+    .state('district', {
+        url: "/district",
+        templateUrl: "/district",
+        data: {pageTitle: 'Add a District'},
+        controller: "DistrictController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'hotelAdminApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-asset/DistrictController.js'
+                    ]
+                });
+            }]
+        }
     }) 
+
+    .state('division', {
+        url: "/division",
+        templateUrl: "/division",
+        data: {pageTitle: 'Add a Division'},
+        controller: "DivisionController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'hotelAdminApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-asset/DivisionController.js'
+                    ]
+                });
+            }]
+        }
+    }) 
+
+    .state('blog', {
+        url: "/blog",
+        templateUrl: "/blog",
+        data: {pageTitle: 'Add a Blog'},
+        controller: "BlogController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'hotelAdminApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-asset/BlogController.js'
+                    ]
+                });
+            }]
+        }
+    })  
 
 
 }]);

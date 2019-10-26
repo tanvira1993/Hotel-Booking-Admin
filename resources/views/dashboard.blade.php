@@ -22,7 +22,7 @@
 				<div class="icon">
 					<i class="ion ion-bag"></i>
 				</div>
-				<a ui-sref="register" class="small-box-footer"> Go <i class="fa fa-arrow-circle-right"></i></a>
+				<a ui-sref="blog" class="small-box-footer"> Go <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->
@@ -75,14 +75,14 @@
 			<!-- small box -->
 			<div class="small-box bg-green">
 				<div class="inner">
-					<h3>65</h3>
+					<h3>District</h3>
 
-					<p>Unique Visitors</p>
+					<p>Add District</p>
 				</div>
 				<div class="icon">
 					<i class="ion ion-pie-graph"></i>
 				</div>
-				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a ui-sref="district" class="small-box-footer">Go <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 
@@ -90,14 +90,14 @@
 			<!-- small box -->
 			<div class="small-box bg-yellow">
 				<div class="inner">
-					<h3>65</h3>
+					<h3>Division</h3>
 
-					<p>Unique Visitors</p>
+					<p>Add Division</p>
 				</div>
 				<div class="icon">
 					<i class="ion ion-pie-graph"></i>
 				</div>
-				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a ui-sref="division" class="small-box-footer">Go <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 

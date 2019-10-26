@@ -30,6 +30,18 @@ Route::get('/resetPassword', function () {
 	return view('credential/resetPassword');
 });
 
+Route::get('/district', function () {
+	return view('blog/district');
+});
+
+Route::get('/division', function () {
+	return view('blog/division');
+});
+
+Route::get('/blog', function () {
+	return view('blog/blog');
+});
+
 Route::get('login/logout', function () {
 	return (String)view('credential/logout_view');
 });
