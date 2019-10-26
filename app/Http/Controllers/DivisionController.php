@@ -5,40 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Divisions;
 use Response;
 use DB;
 use Validator;
 
 class DivisionController extends Controller
 {
-	public function saveAdmin (Request $request)
+	public function createDivision (Request $request)
 	{
 		
 
 		$rules = [
-			'name' => 'required| min:3',
-			'email' => 'required | email | unique:users,email',
-			'phone' => 'required | numeric',
-			'role' => 'required | numeric',
-			'position' => 'required',
-			'password' => 'required | min:2',
-			'repass' => 'required | same:password',
-			'project'=> 'required| numeric'
+			'name' => 'required| min:3| unique:divisions,division_name',
+			'info' => 'required',
+			
 
 		];
 
 		$messages = [
 			'name.required' => 'Name is required!',
-			'email.required' => 'Email is required!',
-			'email.unique' => 'This Email already has taken.',
-			'mobile.required' => 'Phone Number is required!',
-			'role.required' => 'User Role is required!',
-			'position.required' => 'Job Position is required!',
-			'password.required'=> 'PassWord is required',
-			'password.min' => 'password needs at least 2 character',
-			'repass.required'=> 'ReEnter PassWord',
-			'repass.same'=> 'PassWord Did not match',
-			'project' =>'Project is required'
+			'info.required' =>'Info is required'
 
 		];
 
@@ -54,44 +41,36 @@ class DivisionController extends Controller
 
 		try {
 
-			$user = new User;
-			$user->name = $request->name;
-			$user->email = $request->email;
-			$user->phone = $request->phone;
-			$user->position = $request->position;		
-			$user->password = Hash::make($request->password);
-			$user->id_user_roles= $request->role;
-			$user->id_project=$request->project;
+			$division = new Divisions;
+			$division->division_name = $request->name;
+			$division->division_info = $request->info;
+			
 
 
-			if($user->save()){
+			if($division->save()){
 				DB::commit();
-				return Response::json(array('success' => TRUE, 'data' => $user), 200);
+				return Response::json(array('success' => TRUE, 'data' => $division), 200);
 			}
 
 			else{
 
 				DB::rollback();
-				return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Admin could can not be created!'), 400);
+				return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Divison could can not be created!'), 400);
 
 			}
 
 		}
 		
 		catch (\Exception $e) {
-			echo $e;
+			
 			DB::rollback();
-			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Admin could can not be created!'), 400);
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Divison could can not be created!'), 400);
 		}
 		
 
 	}
 
 	
-	public function getAllUserId()
-	{
-		$usersList = User::select('users.*')->get();
-		return Response::json(['success' => true, 'data' => $usersList], 200);
-	}
+	
 
 }

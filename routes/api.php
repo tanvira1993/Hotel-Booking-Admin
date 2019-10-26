@@ -22,3 +22,5 @@ Route::post('login', 'UserCredentialController@login');
 Route::post('changePass', 'UserCredentialController@changePassword');
 Route::get('getAllUserId', 'UserCredentialController@getAllUserId');
 Route::post('adminResetPass', 'UserCredentialController@adminResetPassword');
+Route::post('createDivision', 'DivisionController@createDivision');
+
