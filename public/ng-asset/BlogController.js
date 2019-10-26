@@ -1,4 +1,3 @@
-
 /* Setup blank page controller */
 angular.module('hotelAdminApp').controller('BlogController', ['$scope', '$rootScope', '$location', '$timeout', '$http', function($scope, $rootScope, $location, $timeout, $http) {
 	$scope.$on('$viewContentLoaded', function() {
@@ -12,8 +11,33 @@ angular.module('hotelAdminApp').controller('BlogController', ['$scope', '$rootSc
         	}, 500);
         }
 
+        $scope.getAllDivision= function ()
+        {
+            $http({
+                method: 'get',
+                url: 'api/getAllDivision',
+            }).then(function (response) {
+                $rootScope.divisionList= response.data.data;
+            }, 
+            function (response) {               
 
+            });
+        }
 
+        $scope.getAllDistricts= function ()
+        {
+            $http({
+                method: 'get',
+                url: 'api/getAllDistricts',
+            }).then(function (response) {
+                $rootScope.districtList= response.data.data;
+            }, 
+            function (response) {               
+
+            });
+        }
+        $scope.getAllDistricts();
+        $scope.getAllDivision();
         initSelect2Dropdown();
     });
 }]);

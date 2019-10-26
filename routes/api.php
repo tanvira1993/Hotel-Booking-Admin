@@ -23,4 +23,11 @@ Route::post('changePass', 'UserCredentialController@changePassword');
 Route::get('getAllUserId', 'UserCredentialController@getAllUserId');
 Route::post('adminResetPass', 'UserCredentialController@adminResetPassword');
 Route::post('createDivision', 'DivisionController@createDivision');
+Route::get('getAllDivision', 'DivisionController@getAllDivisions');
+Route::post('createDistrict', 'DistrictController@createDistrict');
+Route::get('getAllDistricts', 'DistrictController@getAllDistricts');
+
+
+
+
 

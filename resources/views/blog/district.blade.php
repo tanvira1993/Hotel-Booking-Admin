@@ -23,16 +23,16 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Division</label>						
-							<select name="idUser" ng-model="resetPassInfo.idUser" class="form-control select2dropdown" style="width: 100%;">
-								<option value="">Select User</option>
-								<option ng-repeat="(key, value) in usersList" value="@{{value.user_id}}">@{{value.name}}</option>
+							<select name="divisionId" ng-model="districtInfo.divisionId" class="form-control select2dropdown" style="width: 100%;">
+								<option value="">Select Division</option>
+								<option ng-repeat="(key, value) in divisionList" value="@{{value.division_id}}">@{{value.division_name}}</option>
 							</select>
 						</div>
 						<!-- /.form-group -->
 						<div class="form-group">
 							<label>District Name</label>		
 
-							<input type="text" class="form-control" id="password" name="password" ng-model="resetPassInfo.password" placeholder="Reset Password">
+							<input type="text" class="form-control" id="name" name="name" ng-model="districtInfo.name" placeholder="Name">
 
 						</div>
 						<!-- /.form-group -->
@@ -43,28 +43,25 @@
 						<div class="form-group">
 							<label>District Info</label>		
 
-							<input type="text" class="form-control" id="password" name="password" ng-model="resetPassInfo.password" placeholder="Reset Password">
+							<input type="text" class="form-control" id="info" name="info" ng-model="districtInfo.info" placeholder="Enter Info">
 
 						</div>
 						<!-- /.form-group -->
-						<div class="form-group">
-							<label>Reset Password</label>		
-
-							<input type="text" class="form-control" id="password" name="password" ng-model="resetPassInfo.password" placeholder="Reset Password">
-
-						</div>
+						
 						<!-- /.form-group -->
 					</div>
 					<!-- /.col -->
 				</div>
 				<div >
-					<button type="submit" ng-click="createForceResetPass()" class="btn btn-info pull-left">Add</button>
+					<button type="submit" ng-click="createDistrict()" class="btn btn-info pull-left">Add</button>
 				</div>
 			</form>
 			<!-- /.row -->
 		</div> 
 		
-		
+		<pre>
+			@{{districtInfo|json}}
+		</pre>
 		<!-- /.box-body -->
 
 	</div>

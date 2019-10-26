@@ -5,40 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Districts;
 use Response;
 use DB;
 use Validator;
 
 class DistrictController extends Controller
 {
-	public function saveAdmin (Request $request)
+	public function createDistrict (Request $request)
 	{
-		
-
 		$rules = [
-			'name' => 'required| min:3',
-			'email' => 'required | email | unique:users,email',
-			'phone' => 'required | numeric',
-			'role' => 'required | numeric',
-			'position' => 'required',
-			'password' => 'required | min:2',
-			'repass' => 'required | same:password',
-			'project'=> 'required| numeric'
-
+			'info' => 'required| min:3',
+			'name' => 'required | min:3 | unique:districts,district_name',
+			'divisionId' => 'required | numeric',
 		];
 
 		$messages = [
 			'name.required' => 'Name is required!',
-			'email.required' => 'Email is required!',
-			'email.unique' => 'This Email already has taken.',
-			'mobile.required' => 'Phone Number is required!',
-			'role.required' => 'User Role is required!',
-			'position.required' => 'Job Position is required!',
-			'password.required'=> 'PassWord is required',
-			'password.min' => 'password needs at least 2 character',
-			'repass.required'=> 'ReEnter PassWord',
-			'repass.same'=> 'PassWord Did not match',
-			'project' =>'Project is required'
+			'info.required' => 'Info is required!',
+			'name.unique' => 'This name already has taken.',
+			'divisionId.required' => 'Division is required!',
+			
 
 		];
 
@@ -54,44 +41,37 @@ class DistrictController extends Controller
 
 		try {
 
-			$user = new User;
-			$user->name = $request->name;
-			$user->email = $request->email;
-			$user->phone = $request->phone;
-			$user->position = $request->position;		
-			$user->password = Hash::make($request->password);
-			$user->id_user_roles= $request->role;
-			$user->id_project=$request->project;
-
-
-			if($user->save()){
+			$district = new Districts;
+			$district->district_name = $request->name;
+			$district->district_summary = $request->info;
+			$district->division_id = $request->divisionId;
+			
+			if($district->save()){
 				DB::commit();
-				return Response::json(array('success' => TRUE, 'data' => $user), 200);
+				return Response::json(array('success' => TRUE, 'data' => $district), 200);
 			}
 
 			else{
 
 				DB::rollback();
-				return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Admin could can not be created!'), 400);
+				return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'District could can not be created!'), 400);
 
 			}
-
 		}
-		
 		catch (\Exception $e) {
-			echo $e;
+			//echo $e;
 			DB::rollback();
-			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Admin could can not be created!'), 400);
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'District could can not be created!'), 400);
 		}
 		
 
 	}
 
-	
-	public function getAllUserId()
-	{
-		$usersList = User::select('users.*')->get();
-		return Response::json(['success' => true, 'data' => $usersList], 200);
+	public function getAllDistricts(){
+
+		$districtList = Districts::select('districts.*')->get();
+		return Response::json(['success' => true, 'data' => $districtList], 200);
 	}
+
 
 }

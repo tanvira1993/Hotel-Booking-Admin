@@ -12,7 +12,7 @@
 <section class="content">
 
 	<div class="box-body">
-		<form id="adminReset-form" name="adminResetForm" novalidate>
+		<form id="Blog-form" name="BlogForm" novalidate>
 			<div class="row">				
 				<div class="col-md-6">
 					<div class="form-group">

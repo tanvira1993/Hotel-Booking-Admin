@@ -15,12 +15,10 @@ class DivisionController extends Controller
 	public function createDivision (Request $request)
 	{
 		
-
 		$rules = [
 			'name' => 'required| min:3| unique:divisions,division_name',
 			'info' => 'required',
 			
-
 		];
 
 		$messages = [
@@ -45,8 +43,6 @@ class DivisionController extends Controller
 			$division->division_name = $request->name;
 			$division->division_info = $request->info;
 			
-
-
 			if($division->save()){
 				DB::commit();
 				return Response::json(array('success' => TRUE, 'data' => $division), 200);
@@ -66,11 +62,11 @@ class DivisionController extends Controller
 			DB::rollback();
 			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Divison could can not be created!'), 400);
 		}
-		
-
 	}
 
-	
-	
+	public function getAllDivisions(){
 
+		$divisionList = Divisions::select('divisions.*')->get();
+		return Response::json(['success' => true, 'data' => $divisionList], 200);
+	}
 }
