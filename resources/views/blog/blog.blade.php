@@ -53,48 +53,49 @@
 				<!-- /.col -->
 			</div>
 
-		</form>
-		<!-- /.row -->
-	</div> 
-	<div class="box">
-		<div class="box-header">
-			<h3 class="box-title">Blog Summary
-				<small>less than 500 words</small>
-			</h3>
-			<!-- tools box -->
-			<div class="pull-right box-tools">
+			
+			<!-- /.row -->
+		</div> 
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">Blog Summary
+					<small>less than 500 words</small>
+				</h3>
+				<!-- tools box -->
+				<div class="pull-right box-tools">
 
+				</div>
+				<!-- /. tools -->
 			</div>
-			<!-- /. tools -->
-		</div>
-		<!-- /.box-header -->
-		<div class="box-body pad">
-			<form>
+			<!-- /.box-header -->
+			<div class="box-body pad">
+				
 				<textarea class="textarea" placeholder="Place some text here"
 				style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-			</form>
-		</div>
-	</div>
-	<div class="box">
-		<div class="box-header">
-			<h3 class="box-title">Main Body
-				<small>less than 3000 words</small>
-			</h3>
-			<!-- tools box -->
-			<div class="pull-right box-tools">
-
+				
 			</div>
-			<!-- /. tools -->
 		</div>
-		<!-- /.box-header -->
-		<div class="box-body pad">
-			<form>
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">Main Body
+					<small>less than 3000 words</small>
+				</h3>
+				<!-- tools box -->
+				<div class="pull-right box-tools">
+
+				</div>
+				<!-- /. tools -->
+			</div>
+			<!-- /.box-header -->
+			<div class="box-body pad">
+				
 				<textarea class="textarea" placeholder="Place some text here"
 				style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-			</form>
+				
+			</div>
 		</div>
-	</div>
-	<div >
-		<button type="submit" ng-click="createForceResetPass()" class="btn btn-info pull-left"> Submit</button>
-	</div>
+		<div >
+			<button type="submit" ng-click="createForceResetPass()" class="btn btn-info pull-left"> Submit</button>
+		</div>
+	</form>
 </section>
