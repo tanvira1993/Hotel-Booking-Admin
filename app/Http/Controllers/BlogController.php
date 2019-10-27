@@ -80,5 +80,11 @@ class BlogController extends Controller
 		}
 		
 }
+
+public function getAllBlogs(){
+
+		$blogList = Blogs::select('blogs.*')->get();
+		return Response::json(['success' => true, 'data' => $blogList], 200);
+	}
 	
 }
