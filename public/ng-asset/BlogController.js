@@ -10,8 +10,28 @@ angular.module('hotelAdminApp').controller('BlogController', ['$scope', '$rootSc
         		});
         	}, 500);
         }
+        $scope.createBlog= function(){
+            toastr.info("'info', 'Loading!', 'Please wait.'")
+            $http({
+                method: 'post',
+                url: 'api/createBlog',
+                data:$scope.blogInfo
+            }).then(function (response) {
+                $scope.blogInfo=null;
+                toastr.success("Blog Created..!!") 
 
-        $scope.getAllDivision= function ()
+            }, function (response) {
+                swal({
+                    title: response.data.heading,
+                    text: response.data.message,
+                    html:true,
+                    type: 'error'
+                }); 
+                toastr.error("Blog could not be Created!!")
+            });
+        }
+    
+         $scope.getAllDivision= function ()
         {
             $http({
                 method: 'get',
@@ -23,8 +43,7 @@ angular.module('hotelAdminApp').controller('BlogController', ['$scope', '$rootSc
 
             });
         }
-
-        $scope.getAllDistricts= function ()
+         $scope.getAllDistrict= function ()
         {
             $http({
                 method: 'get',
@@ -36,8 +55,12 @@ angular.module('hotelAdminApp').controller('BlogController', ['$scope', '$rootSc
 
             });
         }
-        $scope.getAllDistricts();
+
+      
+    
         $scope.getAllDivision();
+        $scope.getAllDistrict();
+
         initSelect2Dropdown();
     });
 }]);

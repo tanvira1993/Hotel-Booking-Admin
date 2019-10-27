@@ -17,16 +17,16 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Division</label>						
-						<select name="idUser" ng-model="resetPassInfo.idUser" class="form-control select2dropdown" style="width: 100%;">
-							<option value="">Select User</option>
-							<option ng-repeat="(key, value) in usersList" value="@{{value.user_id}}">@{{value.name}}</option>
-						</select>
+						<select id="divisionId" name="divisionId" ng-model="blogInfo.divisionId" class="form-control select2dropdown" style="width: 100%;">
+								<option value="">Select Division</option>
+								<option ng-repeat="(key, value) in divisionList" value="@{{value.division_id}}">@{{value.division_name}}</option>
+							</select>
 					</div>
 					<!-- /.form-group -->
 					<div class="form-group">
 						<label>Blog Title</label>		
 
-						<input type="text" class="form-control" id="password" name="password" ng-model="resetPassInfo.password" placeholder="Reset Password">
+						<input type="text" class="form-control" id="title" name="title" ng-model="blogInfo.title" placeholder="Blog Title ">
 
 					</div>
 					<!-- /.form-group -->
@@ -36,16 +36,16 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>District</label>						
-						<select name="idUser" ng-model="resetPassInfo.idUser" class="form-control select2dropdown" style="width: 100%;">
-							<option value="">Select User</option>
-							<option ng-repeat="(key, value) in usersList" value="@{{value.user_id}}">@{{value.name}}</option>
+						<select id="districtId" name="districtId" ng-model="blogInfo.districtId" class="form-control select2dropdown" style="width: 100%;">
+							<option value="">Select District</option>
+							<option ng-repeat="(key, value) in districtList" value="@{{value.district_id}}">@{{value.district_name}}</option>
 						</select>
 					</div>
 					<!-- /.form-group -->
 					<div class="form-group">
 						<label>Author</label>		
 
-						<input type="text" class="form-control" id="password" name="password" ng-model="resetPassInfo.password" placeholder="Reset Password">
+						<input type="text" class="form-control" id="author" name="author" ng-model="blogInfo.author" placeholder="Author Name">
 
 					</div>
 					<!-- /.form-group -->
@@ -70,7 +70,7 @@
 			<!-- /.box-header -->
 			<div class="box-body pad">
 				
-				<textarea class="textarea" placeholder="Place some text here"
+				<textarea class="textarea" id="summary" name="summary" ng-model="blogInfo.summary" placeholder="Place some text here" 
 				style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 				
 			</div>
@@ -89,13 +89,16 @@
 			<!-- /.box-header -->
 			<div class="box-body pad">
 				
-				<textarea class="textarea" placeholder="Place some text here"
+				<textarea class="textarea" id="mainbody" name="mainbody" ng-model="blogInfo.mainbody" placeholder="Place some text here"
 				style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 				
 			</div>
 		</div>
 		<div >
-			<button type="submit" ng-click="createForceResetPass()" class="btn btn-info pull-left"> Submit</button>
+			<button type="submit" ng-click="createBlog()" class="btn btn-info pull-left"> Post</button>
 		</div>
 	</form>
+	<pre>
+		@{{blogInfo| json}}
+	</pre>
 </section>

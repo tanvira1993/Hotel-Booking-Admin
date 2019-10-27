@@ -47,6 +47,8 @@ angular.module('hotelAdminApp').controller('DistrictController', ['$scope', '$ro
             });
         }
 
+        
+        
         $scope.getAllDivision();
         initSelect2Dropdown();
     });
