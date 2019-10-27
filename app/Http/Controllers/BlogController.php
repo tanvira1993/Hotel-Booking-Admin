@@ -5,40 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Blogs;
 use Response;
 use DB;
 use Validator;
 
 class BlogController extends Controller
 {
-	public function saveAdmin (Request $request)
+	public function createBlog (Request $request)
 	{
 		
 
 		$rules = [
-			'name' => 'required| min:3',
-			'email' => 'required | email | unique:users,email',
-			'phone' => 'required | numeric',
-			'role' => 'required | numeric',
-			'position' => 'required',
-			'password' => 'required | min:2',
-			'repass' => 'required | same:password',
-			'project'=> 'required| numeric'
-
+			'title' => 'required| min:5| unique:blogs,blog_title',
+			'divisionId' => 'required | numeric',
+			'districtId' => 'required | numeric',
+			'author' => 'required',
+			'summary' => 'required',
+			'mainbody' => 'required',
 		];
 
 		$messages = [
-			'name.required' => 'Name is required!',
-			'email.required' => 'Email is required!',
-			'email.unique' => 'This Email already has taken.',
-			'mobile.required' => 'Phone Number is required!',
-			'role.required' => 'User Role is required!',
-			'position.required' => 'Job Position is required!',
-			'password.required'=> 'PassWord is required',
-			'password.min' => 'password needs at least 2 character',
-			'repass.required'=> 'ReEnter PassWord',
-			'repass.same'=> 'PassWord Did not match',
-			'project' =>'Project is required'
+			'title.required' => 'Blog tittle is required!',
+			'title.unique' => ' Tittle is already taken!',
+			'districtId.required' => 'District is required!',
+			'divisionId.required' => 'Division is required!',
+			'author.required' => 'Author name is required!',
+			'summary.required' => 'Summary is required!',
+			'mainbody.required' => 'Blog body is required!'
 
 		];
 
@@ -50,48 +44,41 @@ class BlogController extends Controller
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
 
+
 		DB::beginTransaction();
 
 		try {
 
-			$user = new User;
-			$user->name = $request->name;
-			$user->email = $request->email;
-			$user->phone = $request->phone;
-			$user->position = $request->position;		
-			$user->password = Hash::make($request->password);
-			$user->id_user_roles= $request->role;
-			$user->id_project=$request->project;
+			$blog = new Blogs;
+			$blog->district_id = $request->districtId;
+			$blog->division_id = $request->divisionId;
+			$blog->blog_title = $request->title;
+			$blog->author = $request->author;		
+			$blog->blog_summary = $request->summary;
+			$blog->blog_body = $request->mainbody;
+			$blog->user_id = $request->header('idUser');
 
 
-			if($user->save()){
+			if($blog->save()){
 				DB::commit();
-				return Response::json(array('success' => TRUE, 'data' => $user), 200);
+				return Response::json(array('success' => TRUE, 'data' => $blog), 200);
 			}
 
 			else{
 
 				DB::rollback();
-				return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Admin could can not be created!'), 400);
+				return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Blog could can not be created!'), 400);
 
 			}
 
 		}
 		
 		catch (\Exception $e) {
-			echo $e;
+			//echo $e;
 			DB::rollback();
-			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Admin could can not be created!'), 400);
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Blog could can not be created!'), 400);
 		}
 		
-
-	}
-
+}
 	
-	public function getAllUserId()
-	{
-		$usersList = User::select('users.*')->get();
-		return Response::json(['success' => true, 'data' => $usersList], 200);
-	}
-
 }

@@ -26,7 +26,9 @@ Route::post('createDivision', 'DivisionController@createDivision');
 Route::get('getAllDivision', 'DivisionController@getAllDivisions');
 Route::post('createDistrict', 'DistrictController@createDistrict');
 Route::get('getAllDistricts', 'DistrictController@getAllDistricts');
-
+Route::post('createBlog', 'BlogController@createBlog');
+Route::get('getAllDistrict', 'BlogController@getAllDistricts');
+Route::get('getAllDivisions', 'BlogController@getAllDivisions');
 
 
 
