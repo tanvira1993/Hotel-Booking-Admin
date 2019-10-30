@@ -66,6 +66,23 @@ var hotelAdminApp = angular.module("hotelAdminApp", [
  			return formStatus;
  		}
 
+ 		
+ 		$rootScope.getSiteHit= function ()
+ 		{
+ 			$http({
+ 				method: 'get',
+ 				url: 'http://127.0.0.1:8000/api/seeVisitor',
+
+ 			}).then(function (response) {
+ 				$rootScope.hits= response.data.data;
+ 			}, 
+ 			function (response) {               
+
+ 			});
+ 		}
+
+ 		$rootScope.getSiteHit();
+
  		$rootScope.loginError = null;
 
  		$rootScope.login = function(){

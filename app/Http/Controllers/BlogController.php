@@ -79,12 +79,20 @@ class BlogController extends Controller
 			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Blog could can not be created!'), 400);
 		}
 		
-}
+	}
 
-public function getAllBlogs(){
+	public function getAllBlogs(){
 
 		$blogList = Blogs::select('blogs.*')->get();
 		return Response::json(['success' => true, 'data' => $blogList], 200);
 	}
+
+	public function getBlogById(Request $request, $id){
+
+		$blog = Blogs::select('blogs.*')->where('blog_id',$id)->first();
+		return Response::json(['success' => true, 'data' => $blog], 200);
+	}
+
+	
 	
 }

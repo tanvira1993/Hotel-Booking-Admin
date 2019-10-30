@@ -34,3 +34,13 @@ Route::get('getAllBlogsList', 'BlogController@getAllBlogs');
 
 
 
+
+
+
+
+
+
+
+
+Route::get('getBlogById/{id}', 'BlogController@getBlogById');
+
