@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Blogs;
+use App\Districts;
+use App\Divisions;
 use Response;
 use DB;
 use Validator;
@@ -83,13 +85,17 @@ class BlogController extends Controller
 
 	public function getAllBlogs(){
 
-		$blogList = Blogs::select('blogs.*')->get();
+		$blogList = Blogs::select('blogs.*')			
+		->get();
 		return Response::json(['success' => true, 'data' => $blogList], 200);
 	}
 
 	public function getBlogById(Request $request, $id){
 
-		$blog = Blogs::select('blogs.*')->where('blog_id',$id)->first();
+		$blog = Blogs::leftJoin('districts','districts.district_id','=','blogs.district_id') 
+		->leftJoin('divisions','divisions.division_id','=','blogs.division_id')				
+		->where('blog_id',$id)
+		->first();
 		return Response::json(['success' => true, 'data' => $blog], 200);
 	}
 

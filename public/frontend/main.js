@@ -66,12 +66,12 @@ var hotelAdminApp = angular.module("hotelAdminApp", [
  			return formStatus;
  		}
 
- 		
+ 		$rootScope.base_url='http://127.0.0.1:8000/'
  		$rootScope.getSiteHit= function ()
  		{
  			$http({
  				method: 'get',
- 				url: 'http://127.0.0.1:8000/api/seeVisitor',
+ 				url: $rootScope.base_url+'api/seeVisitor',
 
  			}).then(function (response) {
  				$rootScope.hits= response.data.data;
